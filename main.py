@@ -6,6 +6,7 @@ class WorldMap:
     def __init__(self, g: Graph):
         self._g = g
         self.territories = self._g.nodes
+        self.week = 0
     
     def world_status(self):
         [print(x) for x in self.territories]

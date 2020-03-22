@@ -7,3 +7,9 @@ class Territory:
 
     def __repr__(self):
       return f"<Territory: {self.idx}, {self.name}, dom: {self.dom.name}>"
+    
+    def __eq__(self, other):
+        return self.idx == other.idx
+    
+    def __ne__(self, other):
+        return self.idx != other.idx
