@@ -6,6 +6,9 @@ class Graph:
       self._g = g
     self.nodes = list(self._g.keys())
 
+  def __getitem__(self, item):
+    return self._g[item]
+
   def add_node(self, n, edges):
     if not n or not isinstance(edges, list):
       return
