@@ -9,6 +9,12 @@ class Graph:
   def __getitem__(self, item):
     return self._g[item]
 
+  def get_by_idx(self, idx):
+    try:
+      return next(filter(lambda x: x.idx == idx, self.nodes))
+    except StopIteration:
+      return None
+
   def add_node(self, n, edges):
     if not n or not isinstance(edges, list):
       return

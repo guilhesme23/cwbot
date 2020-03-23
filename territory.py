@@ -13,3 +13,6 @@ class Territory:
     
     def __ne__(self, other):
         return self.idx != other.idx
+    
+    def __hash__(self):
+        return self.idx
