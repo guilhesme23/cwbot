@@ -4,6 +4,8 @@ class Node:
     Any custom graph node must extend this class
     """
     def __init__(self, idx):
+        if not isinstance(idx, int):
+            raise TypeError
         self._idx = idx
 
     @property
@@ -34,3 +36,6 @@ class Node:
 
     def __hash__(self):
         return self.idx
+    
+    def __repr__(self):
+        return f"<Node: {self.idx}>"
