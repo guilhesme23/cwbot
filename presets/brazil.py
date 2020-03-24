@@ -1,5 +1,5 @@
 from territory import Territory
-from graph import Graph
+from graph.graph import Graph
 
 acre = Territory(1, "acre", color="#FF0A0A")
 alagoas = Territory(2, "alagoas", color="#CC0A44")
@@ -46,6 +46,7 @@ g.add_node(mato_grosso_sul, [mato_grosso, goias, minas_gerais, sao_paulo, parana
 g.add_node(minas_gerais, [espirito_santo, rio, sao_paulo, goias, bahia, mato_grosso_sul])
 g.add_node(para, [maranhao, tocantins, mato_grosso, amazonas, amapa, roraima])
 g.add_node(paraiba, [rio_grande_norte, ceara, pernambuco])
+g.add_node(parana, [mato_grosso_sul, sao_paulo, santa_catarina])
 g.add_node(pernambuco, [alagoas, bahia, piaui, ceara, paraiba])
 g.add_node(piaui, [maranhao, ceara, pernambuco, bahia, tocantins])
 g.add_node(rio, [espirito_santo, minas_gerais, sao_paulo])

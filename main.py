@@ -1,6 +1,6 @@
-from graph import Graph
+from graph.graph import Graph
 from territory import Territory
-from utils.build_graph import g
+from presets.brazil import g
 
 class WorldMap:
     def __init__(self, g: Graph):

@@ -33,6 +33,7 @@ class Graph:
         For each node, we check all it's neighbours
         before keep going to the next node
         """
+        # TODO: visited neighbours is acting weird
         if isinstance(key, int):
             key = self.get_by_idx(key)
         if not key:
