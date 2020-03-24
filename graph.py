@@ -25,6 +25,23 @@ class Graph:
         self._g[node].add(n)
 
     self.nodes.append(n)
+  
+  def bfs(self, key):
+    """
+    For each node, we check all it's neighbours before keep going to the next node
+    """
+    if isinstance(key, int):
+      key = self.get_by_idx(key)
+    if not key:
+      raise IndexError
+
+    components = [key]
+    for item in components:
+      # This for only ends when there's no more neighbours of a node that weren't visted yet
+      unvisited_neighbours = [x for x in self._g[item] if x not in components]
+      components.extend(unvisited_neighbours) # Append new nodes to the current connected set to keep iterating
+
+    return components
 
   def show_graph(self):
     print('Nodes')
