@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class Graph:
     def __init__(self, g=None):
         if not g:
@@ -38,12 +40,14 @@ class Graph:
 
         components = [key]
         path_store = {}
+        visited = defaultdict(lambda: False)
         for item in components:
             # This for only ends when there's no more
             # neighbours of a node that weren't visted yet
+            visited[item] = True
             unvisited_neighbours = []
             for nbr in self._g[item]:
-                if nbr not in components:
+                if not visited[nbr]:
                     unvisited_neighbours.append(nbr)
                     path_store[nbr] = item
 
