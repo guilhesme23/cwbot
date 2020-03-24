@@ -40,3 +40,17 @@ class TestNode:
         *_, n5 = init_nodes
         g.add_node(n6, [n5])
         assert n6 in g[n5]
+    
+    def test_bfs_path_builder(self, g, init_nodes):
+        n1, n2, n3, n4, n5 = init_nodes
+        path_table = {
+            n5: n3,
+            n3: n1
+        }
+        assert g._gen_bfs_path(n1, n5, path_table) == [n1, n3, n5]
+    
+    def test_bfs_search(self, g, init_nodes):
+        n1, n2, n3, n4, n5 = init_nodes
+        connected, path = g.bfs(n1, n5)
+        assert path == [n1, n3, n5]
+        assert len(connected) == 5
