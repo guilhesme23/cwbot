@@ -15,8 +15,8 @@ class TestNode:
         _g.add_node(n1, [n2, n3])
         _g.add_node(n2, [n1, n4])
         _g.add_node(n3, [n1, n5])
-        _g.add_node(n4, [n2])
-        _g.add_node(n5, [n3])
+        _g.add_node(n4, [n2, n5])
+        _g.add_node(n5, [n3, n2])
         return _g
 
     def test_get_by_idx(self, g, init_nodes):
@@ -52,5 +52,10 @@ class TestNode:
     def test_bfs_search(self, g, init_nodes):
         n1, n2, n3, n4, n5 = init_nodes
         connected, path = g.bfs(n1, n5)
-        assert path == [n1, n3, n5]
         assert len(connected) == 5
+        assert path == [n1, n2, n5]
+    
+    def test_dfs_search(self, g):
+        res = g.dfs(1,5)
+        print(res)
+        assert len(res) == 5

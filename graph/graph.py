@@ -1,4 +1,5 @@
 from collections import defaultdict
+from functools import lru_cache
 
 class Graph:
     def __init__(self, g=None):
@@ -11,6 +12,7 @@ class Graph:
     def __getitem__(self, item):
         return self._g[item]
 
+    @lru_cache(maxsize=256)
     def get_by_idx(self, idx):
         try:
             return next(filter(lambda x: x.idx == idx, self.nodes))
@@ -73,6 +75,27 @@ class Graph:
 
         path.append(s)
         return path[::-1]
+
+    def dfs(self, start, target=None):
+        if isinstance(start, int):
+            start = self.get_by_idx(start)
+        if isinstance(target, int):
+            target = self.get_by_idx(target)
+        
+        visited = defaultdict(lambda: False)
+        return self._dfs(start, visited, [start])
+
+    def _dfs(self, start, visited, acc: list) -> list:
+        if not visited[start]:
+            visited[start] = True
+            for nbr in self._g[start]:
+                if not visited[nbr]:
+                    acc.append(nbr)
+                    return self._dfs(nbr, visited, acc)
+            return acc
+        else:
+            return acc
+
 
     def show_graph(self):
         print('Nodes')
