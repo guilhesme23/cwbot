@@ -56,6 +56,6 @@ class TestNode:
         assert path == [n1, n2, n5]
     
     def test_dfs_search(self, g):
-        res = g.dfs(1,5)
+        res = g.dfs(3)
         print(res)
         assert len(res) == 5

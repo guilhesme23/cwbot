@@ -76,25 +76,20 @@ class Graph:
         path.append(s)
         return path[::-1]
 
-    def dfs(self, start, target=None):
+    def dfs(self, start):
         if isinstance(start, int):
             start = self.get_by_idx(start)
-        if isinstance(target, int):
-            target = self.get_by_idx(target)
         
         visited = defaultdict(lambda: False)
-        return self._dfs(start, visited, [start])
-
-    def _dfs(self, start, visited, acc: list) -> list:
-        if not visited[start]:
-            visited[start] = True
-            for nbr in self._g[start]:
+        return list(self._dfs(start, visited))
+    
+    def _dfs(self, node, visited):
+        if not visited[node]:
+            visited[node] = True
+            yield node
+            for nbr in self._g[node]:
                 if not visited[nbr]:
-                    acc.append(nbr)
-                    return self._dfs(nbr, visited, acc)
-            return acc
-        else:
-            return acc
+                    yield from self._dfs(nbr, visited)
 
 
     def show_graph(self):
