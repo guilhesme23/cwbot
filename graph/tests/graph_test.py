@@ -51,9 +51,10 @@ class TestNode:
     
     def test_bfs_search(self, g, init_nodes):
         n1, n2, n3, n4, n5 = init_nodes
-        connected, path = g.bfs(n1, n5)
+        connected, layers, path = g.bfs(n1, n5)
         assert len(connected) == 5
         assert path == [n1, n2, n5]
+        assert len(layers) == 3
     
     def test_dfs_search(self, g):
         res = g.dfs(3)

@@ -42,6 +42,7 @@ class Graph:
 
         components = [key]
         path_store = {}
+        layers = [[key]]
         visited = defaultdict(lambda: False)
         for item in components:
             # This for only ends when there's no more
@@ -53,7 +54,8 @@ class Graph:
                     visited[nbr] = True
                     unvisited_neighbours.append(nbr)
                     path_store[nbr] = item
-
+            if unvisited_neighbours:
+                layers.append(unvisited_neighbours)
             # Append new nodes to the current connected set to keep iterating
             components.extend(unvisited_neighbours)
 
@@ -62,9 +64,9 @@ class Graph:
                 target = self.get_by_idx(target)
 
             path = self._gen_bfs_path(key, target, path_store)
-            return components, path
+            return components, layers, path
         else:
-            return components, None
+            return components, layers, None
 
     def _gen_bfs_path(self, s, t, paths):
         path = [t]
