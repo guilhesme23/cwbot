@@ -83,7 +83,7 @@ class Graph:
             start = self.get_by_idx(start)
         
         visited = defaultdict(lambda: False)
-        return list(self._dfs(start, visited))
+        return list(self._dfs_iter(start, visited))
     
     def _dfs(self, node, visited):
         if not visited[node]:
@@ -92,6 +92,15 @@ class Graph:
             for nbr in self._g[node]:
                 if not visited[nbr]:
                     yield from self._dfs(nbr, visited)
+    
+    def _dfs_iter(self, node, visited):
+        stack = [node]
+        while stack:
+            curr = stack.pop()
+            if not visited[curr]:
+                visited[curr] = True
+                yield curr
+                stack.extend(self._g[curr])
 
 
     def show_graph(self):
