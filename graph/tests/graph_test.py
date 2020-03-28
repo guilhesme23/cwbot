@@ -3,7 +3,7 @@ from graph.graph import Graph
 from graph.node import Node
 from itertools import count, islice
 
-class TestNode:
+class TestGraph:
     def test_get_by_idx(self, simple_g, simple_nodes):
         n1, *_ = simple_nodes
         assert simple_g.get_by_idx(1) == n1
