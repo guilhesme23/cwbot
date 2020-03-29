@@ -16,4 +16,11 @@ def w_graph(w_nodes):
     g.add_node(n3)
     g.add_node(n4)
     g.add_node(n5)
+
+    g.add_bi_edge(n1, n2)
+    g.add_bi_edge(n1, n3)
+    g.add_bi_edge(n3, n4)
+    g.add_bi_edge(n3, n5)
+    g.add_bi_edge(n2, n3)
+    g.add_bi_edge(n2, n5)
     return g
